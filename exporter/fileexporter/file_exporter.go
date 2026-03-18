@@ -91,8 +91,7 @@ func (e *fileExporter) Shutdown(context.Context) error {
 		return nil
 	}
 	w := e.writer
-	defer func() {
-		e.writer = nil
-	}()
-	return w.shutdown()
+	err := w.shutdown()
+	e.writer = nil
+	return err
 }

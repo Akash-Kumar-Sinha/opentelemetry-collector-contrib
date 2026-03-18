@@ -45,6 +45,7 @@ func exportMessageAsBuffer(w *fileWriter, buf []byte) error {
 }
 
 func (w *fileWriter) export(buf []byte) error {
+	// Ensure only one write operation happens at a time
 	w.mutex.Lock()
 	defer w.mutex.Unlock()
 	if w.file == nil {
